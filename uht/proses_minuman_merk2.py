@@ -344,7 +344,7 @@ class ImageProcessor:
             elif dh >= 129 and dh <= 165:
                 color_name, flavor = "Ungu", "Anggur / Taro"
             elif dh >= 166 and dh <= 173:
-                color_name, flavor = "Pink", "Jambu"
+                color_name, flavor = "Pink", "Sroberi / Jambu"
                 
             if color_name in ["Oranye", "Merah", "Kuning"] and mean_val[2] < 90:
                  color_name, flavor = "Coklat", "Mocha / Coklat / Kopi"
