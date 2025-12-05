@@ -1,0 +1,129 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head><title>Laporan Lengkap Analisis Minuman</title><style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; color: #333; margin:0; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h1 { text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 20px; color: #2c3e50; }
+        .step { background: #fff; border: 1px solid #eee; margin-bottom: 30px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .step-header { display: flex; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
+        .step-num { background: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; }
+        h3 { margin: 0; color: #2980b9; }
+        .img-container { text-align: center; background: #fafafa; padding: 10px; border-radius: 5px; }
+        .process-img { max-width: 100%; max-height: 500px; border: 1px solid #ddd; }
+        .data-box { background: #e8f6f3; padding: 15px; margin-top: 15px; border-radius: 5px; border-left: 4px solid #1abc9c; }
+        ul { margin: 0; padding-left: 20px; }
+        li { margin-bottom: 5px; }
+        
+        .result-panel { display: flex; gap: 20px; margin-top: 40px; }
+        .res-box { flex: 1; padding: 20px; text-align: center; border-radius: 8px; color: white; font-weight: bold; font-size: 1.2em; }
+        .res-flavor { background: #27ae60; }
+        .res-brand { background: #e67e22; }
+        
+        /* Table Style */
+        .comp-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+        .comp-table th { background-color: #34495e; color: white; padding: 12px; text-align: left; }
+        .comp-table td { border-bottom: 1px solid #ddd; padding: 10px; }
+        .score-high { color: #27ae60; font-weight: bold; background-color: #e9f7ef; }
+        .score-low { color: #c0392b; }
+        </style></head>
+        <body>
+            <div class="container">
+                <h1>Laporan Analisis Citra Digital</h1>
+                <p style="text-align:center; color:#7f8c8d;">Laporan ini digenerate secara otomatis oleh sistem Python OpenCV</p>
+                <hr style="border:0; border-top:1px solid #eee; margin: 30px 0;">
+                
+                
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">1</span>
+                <h3>Input Gambar Asli</h3>
+            </div>
+            <p>Memuat gambar input dalam format RGB.</p>
+        <div class="img-container"><img src="temp_img/1_original.jpg" alt="Input Gambar Asli" class="process-img"></div><div class="data-box"><ul><li><strong>Dimensi:</strong> 225x225 px</li></ul></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">2</span>
+                <h3>Deteksi Merk (Feature Matching)</h3>
+            </div>
+            <p>Mencocokkan fitur unik pada gambar asli dengan database logo menggunakan ORB + RANSAC.</p>
+        <div class="img-container"><img src="temp_img/2_brand_matching.jpg" alt="Deteksi Merk (Feature Matching)" class="process-img"></div><div class="data-box"><ul><li><strong>Merk Terdeteksi:</strong> ULTRAMILK</li><li><strong>Info:</strong> Inliers Tertinggi: 20</li></ul></div><div style="margin-top:15px;">
+        <table class="comp-table">
+            <thead><tr><th>Logo Database</th><th>Raw Match</th><th>Inliers (Final)</th><th>Status</th></tr></thead><tbody>
+        <tr><td>ULTRAMILK.png</td><td>51</td><td class='score-high'>20</td><td>Valid Match</td></tr><tr><td>GREENFIELDS.png</td><td>23</td><td class='score-high'>7</td><td>Valid Match</td></tr></tbody></table></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">3</span>
+                <h3>Konversi Grayscale</h3>
+            </div>
+            <p>Mengubah citra ke derajat keabuan.</p>
+        <div class="img-container"><img src="temp_img/3_grayscale.jpg" alt="Konversi Grayscale" class="process-img"></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">4</span>
+                <h3>Thresholding Otsu</h3>
+            </div>
+            <p>Binarisasi otomatis (Nilai ambang: 182.0).</p>
+        <div class="img-container"><img src="temp_img/4_otsu.jpg" alt="Thresholding Otsu" class="process-img"></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">5</span>
+                <h3>Operasi Morfologi</h3>
+            </div>
+            <p>Closing & Opening untuk menyempurnakan bentuk objek.</p>
+        <div class="img-container"><img src="temp_img/5_morfologi.jpg" alt="Operasi Morfologi" class="process-img"></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">6</span>
+                <h3>Deteksi Kontur Utama</h3>
+            </div>
+            <p>Menemukan objek terbesar sebagai kemasan.</p>
+        <div class="img-container"><img src="temp_img/6_contour_box.jpg" alt="Deteksi Kontur Utama" class="process-img"></div><div class="data-box"><ul><li><strong>Posisi X:</strong> 71</li><li><strong>Posisi Y:</strong> 24</li><li><strong>Lebar:</strong> 80</li><li><strong>Tinggi:</strong> 182</li></ul></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">7</span>
+                <h3>Cropping ROI</h3>
+            </div>
+            <p>Memotong area kemasan untuk analisis fokus.</p>
+        <div class="img-container"><img src="temp_img/7_roi_crop.jpg" alt="Cropping ROI" class="process-img"></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">9</span>
+                <h3>Masking Warna</h3>
+            </div>
+            <p>Memisahkan warna background dari teks putih/bayangan hitam (Putih = Dihitung).</p>
+        <div class="img-container"><img src="temp_img/9_color_mask.jpg" alt="Masking Warna" class="process-img"></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">10</span>
+                <h3>Histogram Hue</h3>
+            </div>
+            <p>Grafik distribusi warna Hue pada area masking.</p>
+        <div class="img-container"><img src="temp_img/10_histogram.png" alt="Histogram Hue" class="process-img"></div><div class="data-box"><ul><li><strong>Puncak Hue:</strong> 137</li><li><strong>Avg Brightness:</strong> 186.78</li></ul></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">11</span>
+                <h3>Hasil Analisis Warna</h3>
+            </div>
+            <p>Menentukan rasa berdasarkan Hue Dominan.</p>
+        <div class="img-container"><img src="temp_img/11_final_color.jpg" alt="Hasil Analisis Warna" class="process-img"></div><div class="data-box"><ul><li><strong>Warna Terdeteksi:</strong> Ungu</li><li><strong>Estimasi Rasa:</strong> Anggur / Taro</li></ul></div></div>
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">12</span>
+                <h3>Analisis Tekstur (GLCM)</h3>
+            </div>
+            <p>Statistik permukaan citra.</p>
+        <div class="data-box"><ul><li><strong>Contrast:</strong> 992.2503</li><li><strong>Energy:</strong> 0.0257</li><li><strong>Homogeneity:</strong> 0.1880</li></ul></div></div>
+                
+                <div class="result-panel">
+                    <div class="res-box res-flavor">
+                        HASIL RASA<br><br>Rasa Anggur / Taro
+                    </div>
+                    <div class="res-box res-brand">
+                        HASIL MERK<br><br>ULTRAMILK
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+        
